@@ -3,7 +3,16 @@ export const basicColors = {
   unMarkedBack: "#e0e0e0",
   marked: "#1976d2",
   unMarked: "#757575",
-  primary: "#42a5f5",
+  primary: "#4caf50",
+  primaryDarker: "#1b5e20",
+  info: "#42a5f5",
+  infoDarker: "#1e88e5",
+  warn: "#ffc107",
+  warnDarker: "#ff8f00",
+  error: "#e53935",
+  errorDarker: "#c62828",
+  default: "#795548",
+  defaultDarker: "#4e342e",
 };
 
 export const theme = {

@@ -1,12 +1,13 @@
 import React from "react";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
+import Definition from "../../Components/Definition";
 
 function HomeScreen() {
   return (
     <>
       <Header />
-      <div style={{ height: "100%" }} />
+      <Definition />
       <Footer />
     </>
   );
