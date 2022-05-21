@@ -1,9 +1,6 @@
 const normalizeFunctionalities = (functionalities) => {
   return functionalities.map((func) => ({
-    id: func.id,
-    name: func.name,
-    nameResponsive: func.nameResponsive,
-    definitionString: func.definitionString,
+    ...func,
     marked: false,
   }));
 };
