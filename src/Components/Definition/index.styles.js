@@ -23,4 +23,5 @@ export const DefinitionWrapper = styled.div`
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: center;
+  margin-bottom: 40px;
 `;

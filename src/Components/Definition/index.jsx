@@ -1,13 +1,16 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { addRecorder } from "../../Redux/App/App.actions";
 import { appSelector } from "../../Redux/App/App.selectors";
+import { generateFunctionalities } from "../../Redux/Program/Program.actions";
+
 import { Container } from "../../Styles/CommomStyles";
 
 import Button from "../Button";
 import DefinitionTable from "./DefinitionTable";
 
-import { whatTheFGLMachineIsAbleToDo } from "./index.constants";
+import { recorderLimits, whatTheFGLMachineIsAbleToDo } from "./index.constants";
 import * as S from "./index.styles";
 
 function Definition() {
@@ -19,6 +22,10 @@ function Definition() {
     dispatch(addRecorder(whatTheFGLMachineIsAbleToDo));
   };
 
+  const handleGenerateFunctionalities = () => {
+    dispatch(generateFunctionalities(recorders));
+  };
+
   return (
     <S.Definition>
       <Container>
@@ -26,7 +33,7 @@ function Definition() {
           <S.DefinitionTitle>Definição da Máquina</S.DefinitionTitle>
           <Button
             onClick={handleAddRecorder}
-            disabled={recorders.length >= 10}
+            disabled={recorders.length >= recorderLimits.max}
             type="info"
           >
             Adicionar Registrador
@@ -35,6 +42,13 @@ function Definition() {
         <S.DefinitionWrapper>
           <DefinitionTable />
         </S.DefinitionWrapper>
+        <Button
+          onClick={handleGenerateFunctionalities}
+          disabled={recorders.length < recorderLimits.min}
+          type="primary"
+        >
+          Gerar Máquina
+        </Button>
       </Container>
     </S.Definition>
   );
