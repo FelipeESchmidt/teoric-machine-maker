@@ -1,6 +1,3 @@
-export const SET_SEARCH = "@app/SET_SEARCH";
 export const CHANGE_MODE = "@app/CHANGE_MODE";
-export const CERTIFICATES_LOAD = "@app/CERTIFICATES_LOAD";
-export const CERTIFICATES_LOADED = "@app/CERTIFICATES_LOADED";
-export const CERTIFICATES_LOADED_WITH_ERROR =
-  "@app/CERTIFICATES_LOADED_WITH_ERROR";
+export const ADD_RECORDER = "@app/ADD_RECORDER";
+export const MARK_RECORDER = "@app/MARK_RECORDER";
