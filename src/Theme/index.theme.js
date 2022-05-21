@@ -13,6 +13,8 @@ export const basicColors = {
   errorDarker: "#c62828",
   default: "#795548",
   defaultDarker: "#4e342e",
+  disable: "#989898",
+  disableDarker: "#494949",
 };
 
 export const theme = {

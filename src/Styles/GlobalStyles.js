@@ -18,7 +18,6 @@ export const WholePage = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  max-height: 100vh;
   background-color: ${({ theme }) => theme.lightGray};
 `;
 
