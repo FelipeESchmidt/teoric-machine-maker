@@ -25,4 +25,5 @@ export const lengthValues = {
   7: "⁷",
   8: "⁸",
   9: "⁹",
+  10: "¹⁰",
 };
