@@ -22,9 +22,11 @@ export const StyledButton = styled.a`
   border: none;
   color: ${({ theme }) => theme.white};
   letter-spacing: 1px;
+  text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
-  cursor: pointer;
+  user-select: none;
+  cursor: ${({ disabled }) => (!!disabled ? "not-allowed" : "pointer")};
   :before {
     content: "";
     position: absolute;
