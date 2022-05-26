@@ -2,6 +2,8 @@ import * as constants from "./Program.constants";
 import { generate } from "./Program.functions";
 
 const defaultState = {
+  inputs: [],
+  outputs: [],
   functions: [],
   comparators: [],
   definition: "",
@@ -10,9 +12,11 @@ const defaultState = {
 export default function reducer(state = { ...defaultState }, action) {
   switch (action.type) {
     case constants.GENERATE_FUNCTIONALITIES: {
-      const { functions, comparators, definition } = generate(action.recorders);
-      console.log({ functions, comparators, definition });
-      return { ...state, functions, comparators, definition };
+      const { inputs, outputs, functions, comparators, definition } = generate(
+        action.recorders
+      );
+      console.log({ inputs, outputs, functions, comparators, definition });
+      return { ...state, inputs, outputs, functions, comparators, definition };
     }
 
     default: {

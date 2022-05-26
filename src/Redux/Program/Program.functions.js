@@ -6,17 +6,15 @@ const filterBy = (type) => (f) => f.type === type && f.marked;
 const replaceInfo = (string, search, value) =>
   string.replace(new RegExp(search, "g"), value);
 
-const normalizeFuncs = (recorderName) => (func) =>
-  replaceInfo(func.definitionString, "{recorder}", recorderName);
+const normalizeFuncs = (recorder, type) => (func) => ({
+  type,
+  recorder: recorder.name,
+  definition: replaceInfo(func.definitionString, "{recorder}", recorder.name),
+});
 
-const getRecorderFunctions = (recorderFuncs, recorder) => {
-  const recorderFunctions = recorderFuncs.filter(filterBy("function"));
-  return recorderFunctions.map(normalizeFuncs(recorder.name));
-};
-
-const getRecorderComparators = (recorderFuncs, recorder) => {
-  const recorderFunctions = recorderFuncs.filter(filterBy("comparator"));
-  return recorderFunctions.map(normalizeFuncs(recorder.name));
+const getRecordersFilteredBy = (recorderFuncs, recorder, type) => {
+  const recorderFunctions = recorderFuncs.filter(filterBy(type));
+  return recorderFunctions.map(normalizeFuncs(recorder, type));
 };
 
 const betterAll = (name, recordersAll, replaceBy) =>
@@ -99,13 +97,23 @@ const generateMainDefinition = (recorders) => {
 };
 
 export const generate = (recorders) => {
+  const inputs = [];
+  const outputs = [];
   const functions = [];
   const comparators = [];
   recorders.forEach((recorder) => {
     const recorderFunctionalities = recorder.functionalities;
-    functions.push(...getRecorderFunctions(recorderFunctionalities, recorder));
+    functions.push(
+      ...getRecordersFilteredBy(recorderFunctionalities, recorder, "function")
+    );
     comparators.push(
-      ...getRecorderComparators(recorderFunctionalities, recorder)
+      ...getRecordersFilteredBy(recorderFunctionalities, recorder, "comparator")
+    );
+    inputs.push(
+      ...getRecordersFilteredBy(recorderFunctionalities, recorder, "input")
+    );
+    outputs.push(
+      ...getRecordersFilteredBy(recorderFunctionalities, recorder, "output")
     );
   });
   functions.sort();
@@ -113,6 +121,8 @@ export const generate = (recorders) => {
   const mainDefinition = generateMainDefinition(recorders);
   const funcsDefinition = generateMachineDefinition(recorders);
   return {
+    inputs,
+    outputs,
     functions,
     comparators,
     definition: mainDefinition + "\n\n" + funcsDefinition,
