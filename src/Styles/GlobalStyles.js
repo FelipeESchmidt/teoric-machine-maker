@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
 export const WholePage = styled.div`
   display: flex;
   flex-direction: column;
+  min-width: 250px;
   min-height: 100vh;
   background-color: ${({ theme }) => theme.lightGray};
 `;

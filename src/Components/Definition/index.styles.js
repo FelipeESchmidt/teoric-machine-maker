@@ -16,6 +16,9 @@ export const TopWrapper = styled.div`
 export const DefinitionTitle = styled.h2`
   color: ${({ theme }) => theme.white};
   padding: 20px 0;
+  @media screen and (max-width: 768px) {
+    font-size: 1em;
+  }
 `;
 
 export const DefinitionWrapper = styled.div`
