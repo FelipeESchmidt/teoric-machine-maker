@@ -13,13 +13,21 @@ import AlertMessage from "../../Components/AlertMessage";
 import { appSelector } from "../../Redux/App/App.selectors";
 import { WholePage } from "../../Styles/GlobalStyles";
 import { theme } from "../../Theme/index.theme";
+
 import HomeScreen from "../Home";
+import ProgramationScreen from "../Programation";
+
+import { routes } from "./routes";
 
 function AppRouter() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomeScreen />} />
+        <Route
+          path={`/${routes.programation}`}
+          element={<ProgramationScreen />}
+        />
         <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
