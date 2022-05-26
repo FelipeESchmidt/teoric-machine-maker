@@ -5,6 +5,8 @@ import { addRecorder } from "../../Redux/App/App.actions";
 import { appSelector } from "../../Redux/App/App.selectors";
 import { generateFunctionalities } from "../../Redux/Program/Program.actions";
 
+import { newMessage } from "../../Redux/Alert/Alert.actions";
+
 import { Container } from "../../Styles/CommomStyles";
 
 import Button from "../Button";
@@ -24,6 +26,9 @@ function Definition() {
 
   const handleGenerateFunctionalities = () => {
     dispatch(generateFunctionalities(recorders));
+    dispatch(
+      newMessage({ type: "success", message: "Máquina gerada com sucesso!" })
+    );
   };
 
   return (

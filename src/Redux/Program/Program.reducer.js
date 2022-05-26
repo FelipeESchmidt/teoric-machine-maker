@@ -15,7 +15,6 @@ export default function reducer(state = { ...defaultState }, action) {
       const { inputs, outputs, functions, comparators, definition } = generate(
         action.recorders
       );
-      console.log({ inputs, outputs, functions, comparators, definition });
       return { ...state, inputs, outputs, functions, comparators, definition };
     }
 

@@ -9,6 +9,7 @@ import {
 import { useSelector } from "react-redux";
 import { ThemeProvider } from "styled-components";
 
+import AlertMessage from "../../Components/AlertMessage";
 import { appSelector } from "../../Redux/App/App.selectors";
 import { WholePage } from "../../Styles/GlobalStyles";
 import { theme } from "../../Theme/index.theme";
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme[mode]}>
+      <AlertMessage />
       <WholePage>
         <AppRouter />
       </WholePage>
