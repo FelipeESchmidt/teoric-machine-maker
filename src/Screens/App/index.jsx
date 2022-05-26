@@ -16,6 +16,8 @@ import { theme } from "../../Theme/index.theme";
 
 import HomeScreen from "../Home";
 import ProgramationScreen from "../Programation";
+import Header from "../../Components/Header";
+import Footer from "../../Components/Footer";
 
 import { routes } from "./routes";
 
@@ -41,7 +43,9 @@ function App() {
     <ThemeProvider theme={theme[mode]}>
       <AlertMessage />
       <WholePage>
+        <Header />
         <AppRouter />
+        <Footer />
       </WholePage>
     </ThemeProvider>
   );

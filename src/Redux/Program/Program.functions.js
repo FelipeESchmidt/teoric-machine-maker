@@ -83,7 +83,7 @@ const generateMainDefinition = (recorders) => {
     length: lengthValues[recorders.length],
     input: lengthValues[inputs.length],
     output: lengthValues[outputs.length],
-    functionalities: definitions.join(","),
+    functionalities: definitions.join(", "),
   };
   replaceableParts.forEach((replaceable) => {
     if (replaceableObj[replaceable.for])

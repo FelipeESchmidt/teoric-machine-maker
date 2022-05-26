@@ -1,15 +1,16 @@
 import React from "react";
-import Header from "../../Components/Header";
-import Footer from "../../Components/Footer";
-
+import Breadcrumb, { buildBreadcrumbLink } from "../../Components/Breadcrumb";
 import Programation from "../../Components/Programation";
+
+import { routes } from "../App/routes";
 
 function ProgramationScreen() {
   return (
     <>
-      <Header />
+      <Breadcrumb
+        links={[buildBreadcrumbLink("Programation", routes.programation)]}
+      />
       <Programation />
-      <Footer />
     </>
   );
 }

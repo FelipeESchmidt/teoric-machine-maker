@@ -17,7 +17,7 @@ import {
 import * as S from "./index.styles";
 import Button from "../../Button";
 
-function DefinitionTable() {
+function DefinitionTable({ onSelectFunctionality }) {
   const dispatch = useDispatch();
   const isMobile = useResponsive();
 
@@ -29,6 +29,7 @@ function DefinitionTable() {
 
   const handleSelectFunctionalitie = (recorder, functionalitie) => {
     dispatch(markFunctionalitie(recorder, functionalitie));
+    onSelectFunctionality();
   };
 
   return (

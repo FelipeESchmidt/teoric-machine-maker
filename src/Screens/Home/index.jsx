@@ -1,14 +1,12 @@
 import React from "react";
-import Header from "../../Components/Header";
-import Footer from "../../Components/Footer";
 import Definition from "../../Components/Definition";
+import Breadcrumb from "../../Components/Breadcrumb";
 
 function HomeScreen() {
   return (
     <>
-      <Header />
+      <Breadcrumb />
       <Definition />
-      <Footer />
     </>
   );
 }

@@ -1,7 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Breadcrumb = styled.div`
   display: flex;
+  margin-top: 20px;
   gap: 5px;
 
   a {
@@ -14,7 +15,8 @@ export const Breadcrumb = styled.div`
     }
 
     :not(:last-child)::after {
-      content: ' /';
+      content: " /";
     }
   }
+  box-sizing: border-box;
 `;

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { appSelector } from "../../Redux/App/App.selectors";
 import { generateFunctionalities } from "../../Redux/Program/Program.actions";
+import { programSelector } from "../../Redux/Program/Program.selectors";
 
 import { newMessage } from "../../Redux/Alert/Alert.actions";
 
@@ -11,8 +12,9 @@ import { routes } from "../../Screens/App/routes";
 import { Container } from "../../Styles/CommomStyles";
 
 import Button from "../Button";
-import DefinitionTable from "./DefinitionTable";
 
+import DefinitionTable from "./DefinitionTable";
+import DefinitionText from "./DefinitionText";
 import { recorderLimits } from "./index.constants";
 import * as S from "./index.styles";
 
@@ -20,9 +22,12 @@ function Definition() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [ableToGoNext, setAbleToGoNext] = useState(false);
-
   const { recorders } = useSelector(appSelector);
+  const { definition } = useSelector(programSelector);
+
+  const [ableToGoNext, setAbleToGoNext] = useState(!!definition);
+
+  const onSelectFunctionality = () => setAbleToGoNext(false);
 
   const handleGoNext = () => navigate(routes.programation);
 
@@ -54,8 +59,13 @@ function Definition() {
           )}
         </S.TopWrapper>
         <S.DefinitionWrapper>
-          <DefinitionTable />
+          <DefinitionTable onSelectFunctionality={onSelectFunctionality} />
         </S.DefinitionWrapper>
+        {ableToGoNext && (
+          <S.DefinitionWrapper>
+            <DefinitionText />
+          </S.DefinitionWrapper>
+        )}
       </Container>
     </S.Definition>
   );
