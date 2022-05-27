@@ -1,9 +1,36 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+
+import { addLine } from "../../Redux/Programation/Programation.actions";
+
+import { Container } from "../../Styles/CommomStyles";
+import Button from "../Button";
+
+import Lines from "./Lines";
 
 import * as S from "./index.styles";
 
 function Programation() {
-  return <S.Programation></S.Programation>;
+  const dispatch = useDispatch();
+
+  const handleAddLine = () => dispatch(addLine());
+
+  return (
+    <S.Programation>
+      <Container>
+        <S.TopWrapper>
+          <S.DefinitionTitle>Programação</S.DefinitionTitle>
+          <Button onClick={handleAddLine} disabled={false} type="primary">
+            Adicionar Linha
+          </Button>
+          <Button onClick={() => {}} type="warn">
+            Próximo Passo
+          </Button>
+        </S.TopWrapper>
+        <Lines />
+      </Container>
+    </S.Programation>
+  );
 }
 
 export default Programation;

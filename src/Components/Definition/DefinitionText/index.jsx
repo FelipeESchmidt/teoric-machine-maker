@@ -8,7 +8,7 @@ import * as S from "./index.styles";
 function DefinitionText() {
   const { definition } = useSelector(programSelector);
 
-  return <S.StyledTextArea readOnly>{definition}</S.StyledTextArea>;
+  return <S.StyledTextArea readOnly value={definition} />;
 }
 
 export default DefinitionText;
