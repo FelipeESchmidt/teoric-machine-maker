@@ -6,6 +6,7 @@ export const StyledLines = styled.div`
   flex-direction: column;
   gap: 5px;
   width: 100%;
+  min-height: 400px;
   margin: 20px 0;
   padding: 10px;
   box-shadow: 0 0 8px 4px ${({ theme }) => theme.darkGray};
@@ -13,7 +14,6 @@ export const StyledLines = styled.div`
   @media screen and (max-width: 768px) {
     flex-direction: row;
     overflow-x: scroll;
-    min-height: 400px;
   }
 `;
 
@@ -37,6 +37,21 @@ export const LineText = styled(Text)`
   padding-left: 10px;
   min-width: 30px;
   text-align: center;
+  :hover {
+    color: ${({ theme }) => theme.errorDarker};
+    cursor: pointer;
+    ::before {
+      content: "x";
+      position: absolute;
+      color: ${({ theme }) => theme.errorDarker};
+      top: 0;
+      left: -10px;
+      bottom: 0;
+    }
+    ::after {
+      background-color: ${({ theme }) => theme.errorDarker};
+    }
+  }
   ::after {
     content: "";
     position: absolute;
@@ -56,6 +71,15 @@ export const LineText = styled(Text)`
       left: 0;
       right: 0;
       bottom: 0;
+    }
+    ::before {
+      content: "x";
+      position: absolute;
+      color: ${({ theme }) => theme.errorDarker};
+      top: -15px;
+      left: 0;
+      right: 0;
+      bottom: auto;
     }
   }
 `;

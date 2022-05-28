@@ -10,6 +10,13 @@ export default function reducer(state = { ...defaultState }, action) {
       return { ...state, lines: [...state.lines, {}] };
     }
 
+    case constants.REMOVE_LINE: {
+      const newLines = [...state.lines];
+      newLines.splice(action.lineIndex, 1);
+      console.log({ old: state.lines, newLines, lineIndex: action.lineIndex });
+      return { ...state, lines: newLines };
+    }
+
     case constants.SET_LINE_TYPE: {
       const lines = [...state.lines];
       lines[action.lineIndex] = {

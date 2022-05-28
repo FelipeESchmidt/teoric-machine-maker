@@ -4,6 +4,11 @@ export const addLine = () => ({
   type: constants.ADD_LINE,
 });
 
+export const removeLine = (lineIndex) => ({
+  type: constants.REMOVE_LINE,
+  lineIndex,
+});
+
 export const setLineType = (lineType, lineItems, lineIndex) => ({
   type: constants.SET_LINE_TYPE,
   lineType,

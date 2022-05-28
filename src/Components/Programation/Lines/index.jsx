@@ -1,7 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setLineType } from "../../../Redux/Programation/Programation.actions";
+import {
+  removeLine,
+  setLineType,
+} from "../../../Redux/Programation/Programation.actions";
 import { programationSelector } from "../../../Redux/Programation/Programation.selectors";
 
 import { lineTypes } from "../index.contants";
@@ -24,6 +27,10 @@ function Lines() {
     dispatch(setLineType(value, [...lineTypes[value].items], lineIndex));
   };
 
+  const handleRemoveLine = (lineIndex) => {
+    dispatch(removeLine(lineIndex));
+  };
+
   const renderLineType = (line, index) => {
     return <LineType line={line} index={index} />;
   };
@@ -32,11 +39,16 @@ function Lines() {
     <S.StyledLines>
       {lines.map((line, index) => (
         <S.StyledLine key={index.toString()}>
-          <S.LineText>{index}</S.LineText>
-          <S.StyledSelect
-            onChange={({ value }) => handleSelectLineType(value, index)}
-            options={lineOptions}
-          />
+          <S.LineText onClick={() => handleRemoveLine(index)}>
+            {index}
+          </S.LineText>
+          {!line.type && (
+            <S.StyledSelect
+              value={line.type}
+              onChange={({ value }) => handleSelectLineType(value, index)}
+              options={lineOptions}
+            />
+          )}
           {line.type && renderLineType(line, index)}
         </S.StyledLine>
       ))}
