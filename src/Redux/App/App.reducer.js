@@ -1,5 +1,6 @@
 import * as constants from "./App.constants";
 import { createNewRecorder, markRecorderFunctionalitie } from "./App.functions";
+import { generateRandomMachine } from "./App.random";
 
 const swapMode = (state) => (state.mode === "dark" ? "light" : "dark");
 
@@ -30,6 +31,12 @@ export default function reducer(state = { ...defaultState }, action) {
       );
 
       return { ...state, recorders: newRecorders };
+    }
+
+    case constants.GENERATE_RANDOM_MACHINE: {
+      const randomRecorders = generateRandomMachine();
+
+      return { ...state, recorders: randomRecorders };
     }
 
     default: {

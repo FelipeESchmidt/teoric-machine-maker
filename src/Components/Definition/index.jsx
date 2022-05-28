@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addRecorder } from "../../Redux/App/App.actions";
+import { addRecorder, randomMachine } from "../../Redux/App/App.actions";
 import { appSelector } from "../../Redux/App/App.selectors";
 import { generateFunctionalities } from "../../Redux/Program/Program.actions";
 import { programSelector } from "../../Redux/Program/Program.selectors";
@@ -37,12 +37,42 @@ function Definition() {
     dispatch(addRecorder(whatTheFGLMachineIsAbleToDo));
   };
 
+  const dispatchMessage = (message = "Sucesso!") =>
+    dispatch(newMessage({ type: "success", message }));
+
   const handleGenerateFunctionalities = () => {
     dispatch(generateFunctionalities(recorders));
-    dispatch(
-      newMessage({ type: "success", message: "Máquina gerada com sucesso!" })
-    );
+    dispatchMessage("Máquina gerada com sucesso!");
     setAbleToGoNext(true);
+  };
+
+  const handleGenerateRandom = () => {
+    dispatch(randomMachine());
+    dispatchMessage();
+  };
+
+  const renderSecondaryButton = () => {
+    if (ableToGoNext)
+      return (
+        <Button onClick={handleGoNext} type="warn">
+          Próximo Passo
+        </Button>
+      );
+    if (recorders.length)
+      return (
+        <Button
+          onClick={handleGenerateFunctionalities}
+          disabled={recorders.length < recorderLimits.min}
+          type="primary"
+        >
+          Gerar Máquina
+        </Button>
+      );
+    return (
+      <Button onClick={handleGenerateRandom} type="error">
+        Máquina Aleatória
+      </Button>
+    );
   };
 
   return (
@@ -57,19 +87,7 @@ function Definition() {
           >
             Adicionar Registrador
           </Button>
-          {ableToGoNext ? (
-            <Button onClick={handleGoNext} type="warn">
-              Próximo Passo
-            </Button>
-          ) : (
-            <Button
-              onClick={handleGenerateFunctionalities}
-              disabled={recorders.length < recorderLimits.min}
-              type="primary"
-            >
-              Gerar Máquina
-            </Button>
-          )}
+          {renderSecondaryButton()}
         </S.TopWrapper>
         <S.DefinitionWrapper>
           <DefinitionTable onSelectFunctionality={onSelectFunctionality} />

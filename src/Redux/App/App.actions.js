@@ -14,3 +14,7 @@ export const markFunctionalitie = (recorder, functionalitie) => ({
   functionalitie,
   recorder,
 });
+
+export const randomMachine = () => ({
+  type: constants.GENERATE_RANDOM_MACHINE,
+});
