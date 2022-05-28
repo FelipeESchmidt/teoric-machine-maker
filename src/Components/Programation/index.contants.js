@@ -2,7 +2,7 @@ export const lineTypes = {
   if: {
     text: "se",
     items: [
-      { select: "comparator", text: "" },
+      { select: "comparators", text: "" },
       { text: "então vá_para" },
       { select: "lines", text: "" },
       { text: "senão vá_para" },
@@ -12,7 +12,7 @@ export const lineTypes = {
   function: {
     text: "faça",
     items: [
-      { select: "function", text: "" },
+      { select: "functions", text: "" },
       { text: "vá_para" },
       { select: "lines", text: "" },
     ],

@@ -13,6 +13,18 @@ export const TopWrapper = styled.div`
   align-items: center;
   margin-top: 20px;
   padding: 0 10px;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    > a {
+      width: 75%;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    flex-direction: column;
+    > a {
+      width: 90%;
+    }
+  }
 `;
 
 export const DefinitionTitle = styled.h2`

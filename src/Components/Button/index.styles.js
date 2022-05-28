@@ -26,6 +26,7 @@ export const StyledButton = styled.a`
   text-transform: uppercase;
   transition: 0.5s;
   user-select: none;
+  box-sizing: border-box;
   cursor: ${({ disabled }) => (!!disabled ? "not-allowed" : "pointer")};
   :before {
     content: "";
