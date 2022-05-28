@@ -12,7 +12,16 @@ export default function reducer(state = { ...defaultState }, action) {
 
     case constants.SET_LINE_TYPE: {
       const lines = [...state.lines];
-      lines[action.lineIndex] = { type: action.lineType };
+      lines[action.lineIndex] = {
+        type: action.lineType,
+        items: action.lineItems,
+      };
+      return { ...state, lines };
+    }
+
+    case constants.SET_LINE_SELECTION: {
+      const lines = [...state.lines];
+      lines[action.lineIndex].items[action.itemIndex] = { text: action.value };
       return { ...state, lines };
     }
 
