@@ -5,6 +5,8 @@ export const basicColors = {
   unMarked: "#757575",
   primary: "#4caf50",
   primaryDarker: "#1b5e20",
+  success: "#4caf50",
+  successDarker: "#1b5e20",
   info: "#42a5f5",
   infoDarker: "#1e88e5",
   warn: "#ffc107",
@@ -21,6 +23,7 @@ export const theme = {
   dark: {
     ...basicColors,
     black: "#0f1113",
+    realBlack: "#000000",
     white: "#ffffff",
     darkGray: "#1e2227",
     lightGray: "#23272e",
@@ -33,6 +36,7 @@ export const theme = {
   light: {
     ...basicColors,
     black: "#cccccc",
+    realBlack: "#ffffff",
     white: "#000000",
     darkGray: "#e3e3e3",
     lightGray: "#efefef",
