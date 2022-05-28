@@ -1,7 +1,10 @@
 import * as constants from "./Programation.constants";
+import { validadePossibleErrors } from "./Programation.functions";
 
 const defaultState = {
   lines: [{}],
+  isValid: false,
+  error: "",
 };
 
 export default function reducer(state = { ...defaultState }, action) {
@@ -13,7 +16,6 @@ export default function reducer(state = { ...defaultState }, action) {
     case constants.REMOVE_LINE: {
       const newLines = [...state.lines];
       newLines.splice(action.lineIndex, 1);
-      console.log({ old: state.lines, newLines, lineIndex: action.lineIndex });
       return { ...state, lines: newLines };
     }
 
@@ -30,6 +32,11 @@ export default function reducer(state = { ...defaultState }, action) {
       const lines = [...state.lines];
       lines[action.lineIndex].items[action.itemIndex] = { text: action.value };
       return { ...state, lines };
+    }
+
+    case constants.VALIDATE_LINES: {
+      const error = validadePossibleErrors([...state.lines]);
+      return { ...state, error, isValid: !error };
     }
 
     default: {

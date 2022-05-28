@@ -22,3 +22,7 @@ export const setLineSelection = (value, itemIndex, lineIndex) => ({
   itemIndex,
   lineIndex,
 });
+
+export const validateLines = () => ({
+  type: constants.VALIDATE_LINES,
+});

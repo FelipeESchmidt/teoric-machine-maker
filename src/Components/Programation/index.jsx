@@ -7,6 +7,7 @@ import { Container } from "../../Styles/CommomStyles";
 import Button from "../Button";
 
 import Lines from "./Lines";
+import MainButton from "./MainButton";
 
 import * as S from "./index.styles";
 
@@ -20,12 +21,10 @@ function Programation() {
       <Container>
         <S.TopWrapper>
           <S.DefinitionTitle>Programação</S.DefinitionTitle>
-          <Button onClick={handleAddLine} disabled={false} type="primary">
+          <Button onClick={handleAddLine} type="info">
             Adicionar Linha
           </Button>
-          <Button onClick={() => {}} type="warn">
-            Próximo Passo
-          </Button>
+          <MainButton />
         </S.TopWrapper>
         <Lines />
       </Container>
