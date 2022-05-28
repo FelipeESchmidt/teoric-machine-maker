@@ -4,6 +4,7 @@ import Select from "react-select";
 export const StyledLines = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 5px;
   width: 100%;
   margin: 20px 0;
   padding: 10px;
@@ -34,7 +35,7 @@ export const Text = styled.span`
 export const LineText = styled(Text)`
   position: relative;
   padding-left: 10px;
-  min-width: 20px;
+  min-width: 30px;
   text-align: center;
   ::after {
     content: "";

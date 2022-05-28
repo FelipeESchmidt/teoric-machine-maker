@@ -6,6 +6,8 @@ import { programationSelector } from "../../../Redux/Programation/Programation.s
 
 import { lineTypes } from "../index.contants";
 
+import LineType from "./LineType";
+
 import * as S from "./index.styles";
 
 function Lines() {
@@ -18,11 +20,12 @@ function Lines() {
 
   const { lines } = useSelector(programationSelector);
 
-  console.log(lines);
-
   const handleSelectLineType = (value, lineIndex) => {
-    console.log(value, lineIndex);
-    dispatch(setLineType(value, lineIndex));
+    dispatch(setLineType(value, [...lineTypes[value].items], lineIndex));
+  };
+
+  const renderLineType = (line, index) => {
+    return <LineType line={line} index={index} />;
   };
 
   return (
@@ -34,6 +37,7 @@ function Lines() {
             onChange={({ value }) => handleSelectLineType(value, index)}
             options={lineOptions}
           />
+          {line.type && renderLineType(line, index)}
         </S.StyledLine>
       ))}
     </S.StyledLines>
