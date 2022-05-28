@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+import { addRecorder } from "../../Redux/App/App.actions";
 import { appSelector } from "../../Redux/App/App.selectors";
 import { generateFunctionalities } from "../../Redux/Program/Program.actions";
 import { programSelector } from "../../Redux/Program/Program.selectors";
@@ -15,7 +16,8 @@ import Button from "../Button";
 
 import DefinitionTable from "./DefinitionTable";
 import DefinitionText from "./DefinitionText";
-import { recorderLimits } from "./index.constants";
+
+import { recorderLimits, whatTheFGLMachineIsAbleToDo } from "./index.constants";
 import * as S from "./index.styles";
 
 function Definition() {
@@ -31,6 +33,10 @@ function Definition() {
 
   const handleGoNext = () => navigate(routes.programation);
 
+  const handleAddRecorder = () => {
+    dispatch(addRecorder(whatTheFGLMachineIsAbleToDo));
+  };
+
   const handleGenerateFunctionalities = () => {
     dispatch(generateFunctionalities(recorders));
     dispatch(
@@ -44,6 +50,13 @@ function Definition() {
       <Container>
         <S.TopWrapper>
           <S.DefinitionTitle>Definição da Máquina</S.DefinitionTitle>
+          <Button
+            onClick={handleAddRecorder}
+            disabled={recorders.length >= recorderLimits.max}
+            type="info"
+          >
+            Adicionar Registrador
+          </Button>
           {ableToGoNext ? (
             <Button onClick={handleGoNext} type="warn">
               Próximo Passo

@@ -11,7 +11,7 @@ export const TopWrapper = styled.div`
   gap: 10px;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin: 20px 0;
   padding: 0 10px;
   @media screen and (max-width: 768px) {
     flex-direction: column;
