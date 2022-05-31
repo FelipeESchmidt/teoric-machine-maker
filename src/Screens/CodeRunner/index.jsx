@@ -21,7 +21,7 @@ function CodeRunnerScreen() {
     dispatch(
       newMessage({
         type: "error",
-        message: "Uma máquina programada é necessária rodar",
+        message: "Uma máquina programada é necessária para rodar",
       })
     );
     return <Navigate to={routes.root} replace />;

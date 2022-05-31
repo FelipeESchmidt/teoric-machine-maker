@@ -26,6 +26,7 @@ export const StyledTextArea = styled.textarea`
   resize: none;
   outline: none;
   cursor: inherit;
+  box-sizing: border-box;
 
   ::-webkit-scrollbar {
     width: 15px;
