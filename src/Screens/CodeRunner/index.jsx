@@ -7,6 +7,7 @@ import { programSelector } from "../../Redux/Program/Program.selectors";
 import { programationSelector } from "../../Redux/Programation/Programation.selectors";
 
 import Breadcrumb, { buildBreadcrumbLink } from "../../Components/Breadcrumb";
+import CodeRunner from "../../Components/CodeRunner";
 
 import { routes } from "../App/routes";
 
@@ -34,7 +35,7 @@ function CodeRunnerScreen() {
           buildBreadcrumbLink("CodeRunner", routes.codeRunner),
         ]}
       />
-      <>teste</>
+      <CodeRunner />
     </>
   );
 }

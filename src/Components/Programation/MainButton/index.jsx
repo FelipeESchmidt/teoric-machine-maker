@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
@@ -14,17 +14,30 @@ function MainButton() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [showMessage, setShowMessage] = useState(false);
+
   const { isValid, error } = useSelector(programationSelector);
 
   const validateProgramation = () => {
     dispatch(validateLines());
+    setShowMessage(true);
   };
 
   const handleGoNext = () => navigate(routes.codeRunner);
 
   useEffect(() => {
-    if (error) dispatch(newMessage({ type: "error", message: error }));
-  }, [error, dispatch]);
+    if (showMessage) {
+      if (error) {
+        dispatch(newMessage({ type: "error", message: error }));
+        setShowMessage(false);
+      } else {
+        dispatch(
+          newMessage({ type: "success", message: "Validação concluida" })
+        );
+        setShowMessage(false);
+      }
+    }
+  }, [showMessage, error, dispatch]);
 
   const renderNextStepButton = () => (
     <Button onClick={handleGoNext} type="warn">

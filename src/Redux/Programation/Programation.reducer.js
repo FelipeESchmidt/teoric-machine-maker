@@ -10,13 +10,13 @@ const defaultState = {
 export default function reducer(state = { ...defaultState }, action) {
   switch (action.type) {
     case constants.ADD_LINE: {
-      return { ...state, lines: [...state.lines, {}] };
+      return { ...state, lines: [...state.lines, {}], isValid: false };
     }
 
     case constants.REMOVE_LINE: {
       const newLines = [...state.lines];
       newLines.splice(action.lineIndex, 1);
-      return { ...state, lines: newLines };
+      return { ...state, lines: newLines, isValid: false };
     }
 
     case constants.SET_LINE_TYPE: {
