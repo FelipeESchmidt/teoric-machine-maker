@@ -13,11 +13,12 @@ import AlertMessage from "../../Components/AlertMessage";
 import { appSelector } from "../../Redux/App/App.selectors";
 import { WholePage } from "../../Styles/GlobalStyles";
 import { theme } from "../../Theme/index.theme";
+import Header from "../../Components/Header";
+import Footer from "../../Components/Footer";
 
 import HomeScreen from "../Home";
 import ProgramationScreen from "../Programation";
-import Header from "../../Components/Header";
-import Footer from "../../Components/Footer";
+import CodeRunnerScreen from "../CodeRunner";
 
 import { routes } from "./routes";
 
@@ -30,6 +31,7 @@ function AppRouter() {
           path={`/${routes.programation}`}
           element={<ProgramationScreen />}
         />
+        <Route path={`/${routes.codeRunner}`} element={<CodeRunnerScreen />} />
         <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
