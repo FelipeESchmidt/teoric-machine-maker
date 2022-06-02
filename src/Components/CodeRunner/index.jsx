@@ -21,12 +21,18 @@ function CodeRunner() {
 
   const handleGenerateCode = () => dispatch(generateCode(recorders, lines));
 
+  const clearScripts = () => {
+    document
+      .querySelectorAll("script[data-op=code]")
+      .forEach((el) => el.remove());
+  };
+
   const runCode = () => {
+    clearScripts();
     const script = document.createElement("script");
-    console.log(code);
-    const scriptText = document.createTextNode(
-      `document.getElementById('traceTable').innerHTML = \`${code}\``
-    );
+    script.setAttribute("data-op", "code");
+
+    const scriptText = document.createTextNode(code);
 
     script.appendChild(scriptText);
     document.body.appendChild(script);
