@@ -1,5 +1,7 @@
+import { ifComps, firstCompLine, realFunction } from "./Code.constants";
+
 const codeStart = "(() => {\n\nlet programOut = ''\n";
-const codeEnd = "\nconsole.log(programOut)\n})();";
+const codeEnd = "\nconsole.log(programOut);\n})();";
 
 const generateLogger = () =>
   `const log = (str) => programOut += str + '\\n';\n`;
@@ -7,6 +9,7 @@ const generateReturn = () => `const lineReturnFunction = () => {}\n`;
 
 const normalizeLine = (line) => (line >= 0 ? line : "Return");
 const normalizeRecorderName = (text) => text.split("_").pop().toUpperCase();
+const normalizeFunction = (text) => text.split("_").shift();
 
 const getFunctionName = (index) => `line${index}Function`;
 const getRecorderName = (name) => `recorder_${name}`;
@@ -15,16 +18,48 @@ const generateIfFunction = (items, index) => {
   const recorderName = normalizeRecorderName(items[0].text);
   const trueLine = normalizeLine(items[2].text);
   const falseLine = normalizeLine(items[4].text);
-  return `${getFunctionName(index)} = () => {if(${getRecorderName(
+  return `${getFunctionName(index)} = () => {if(!${getRecorderName(
     recorderName
-  )}){${getFunctionName(trueLine)}()}else{${getFunctionName(falseLine)}()}}\n`;
+  )}){log(getFullRecordersValues('${trueLine}')+${ifComps.good(
+    recorderName,
+    index,
+    trueLine
+  )});${getFunctionName(
+    trueLine
+  )}()}else{log(getFullRecordersValues('${falseLine}')+${ifComps.good(
+    recorderName,
+    index,
+    falseLine
+  )});${getFunctionName(falseLine)}()}}\n`;
 };
 
-/* STOPPED HERE */
+const mountFunctionByRecorder = (
+  recorder,
+  variable,
+  funcType,
+  line,
+  nextLine
+) =>
+  `${realFunction[funcType].func(
+    variable
+  )}log(getFullRecordersValues('${nextLine}')+${realFunction[funcType].compLine(
+    recorder,
+    line,
+    nextLine
+  )});`;
+
 const generateFunctionFunction = (items, index) => {
   const recorderName = normalizeRecorderName(items[0].text);
   const nextLine = normalizeLine(items[2].text);
-  return `${getFunctionName(index)} = () => {() => {};${getFunctionName(
+  const functionType = normalizeFunction(items[0].text);
+  const realFunction = mountFunctionByRecorder(
+    recorderName,
+    getRecorderName(recorderName),
+    functionType,
+    index,
+    nextLine
+  );
+  return `${getFunctionName(index)} = () => {${realFunction}${getFunctionName(
     nextLine
   )}()}\n`;
 };
@@ -50,6 +85,11 @@ const generateFullRecordersLog = () => {
   return `const getFullRecordersValues = (line) => ('(' + line + ' ' + getRecordersValues() + ')')\n`;
 };
 
+const runCode = () =>
+  `log(getFullRecordersValues('0')+${firstCompLine})\n${getFunctionName(
+    0
+  )}()\n`;
+
 export const generate = (recorders, lines) => {
   let fullCode = codeStart;
 
@@ -65,6 +105,8 @@ export const generate = (recorders, lines) => {
   lines.forEach(
     (line, index) => (fullCode += genereteLineFunction(line, index))
   );
+
+  fullCode += runCode();
 
   return fullCode + codeEnd;
 };

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { generateCode } from "../../Redux/Code/Code.actions";
+import { generateCode, resetCode } from "../../Redux/Code/Code.actions";
 import { appSelector } from "../../Redux/App/App.selectors";
 import { codeSelector } from "../../Redux/Code/Code.selectors";
 import { programationSelector } from "../../Redux/Programation/Programation.selectors";
@@ -37,6 +37,10 @@ function CodeRunner() {
     script.appendChild(scriptText);
     document.body.appendChild(script);
   };
+
+  useEffect(() => {
+    dispatch(resetCode());
+  }, [dispatch]);
 
   return (
     <S.CodeRunner>

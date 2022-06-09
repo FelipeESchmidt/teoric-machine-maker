@@ -5,3 +5,7 @@ export const generateCode = (recorders, lines) => ({
   recorders,
   lines,
 });
+
+export const resetCode = () => ({
+  type: constants.RESET_CODE,
+});

@@ -11,6 +11,9 @@ export default function reducer(state = { ...defaultState }, action) {
       const code = generate(action.recorders, action.lines);
       return { ...state, code };
 
+    case constants.RESET_CODE:
+      return { ...defaultState };
+
     default: {
       return state;
     }
