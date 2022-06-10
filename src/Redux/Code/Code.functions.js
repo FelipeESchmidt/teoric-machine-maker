@@ -1,7 +1,8 @@
 import { ifComps, firstCompLine, realFunction } from "./Code.constants";
 
 const codeStart = "(() => {\n\nlet programOut = ''\n";
-const codeEnd = "\nconsole.log(programOut);\n})();";
+const codeVerifyInfiniteLoop = `\nlet linesRunned = 0;\nconst verifyMax = 200;\nconst verify = () => {linesRunned += 1;if(linesRunned > verifyMax){linesRunned = 0;return confirm('Seu programa pode estar em loop infinito! Deseja continuar?')}return true;}\n`;
+const codeEnd = "\n})();";
 
 const generateLogger = () =>
   `const log = (str) => programOut += str + '\\n';\n`;
@@ -21,7 +22,9 @@ const generateIfFunction = (items, index) => {
   const recorderName = normalizeRecorderName(items[0].text);
   const trueLine = normalizeLine(items[2].text);
   const falseLine = normalizeLine(items[4].text);
-  return `${getFunctionName(index)} = () => {if(!${getRecorderName(
+  return `${getFunctionName(
+    index
+  )} = () => {if(!verify()){return}if(!${getRecorderName(
     recorderName
   )}){log(getFullRecordersValues('${trueLine}')+${ifComps.good(
     recorderName,
@@ -62,7 +65,9 @@ const generateFunctionFunction = (items, index) => {
     index,
     nextLine
   );
-  return `${getFunctionName(index)} = () => {${realFunction}${getFunctionName(
+  return `${getFunctionName(
+    index
+  )} = () => {if(!verify()){return}${realFunction}${getFunctionName(
     nextLine
   )}()}\n`;
 };
@@ -98,6 +103,7 @@ const printResult = () =>
 
 export const generate = (recorders, lines, initialValues) => {
   let fullCode = codeStart;
+  fullCode += codeVerifyInfiniteLoop;
 
   fullCode += generateLogger();
   fullCode += generateReturn();
