@@ -1,9 +1,8 @@
-import { linesDefault } from "./a";
 import * as constants from "./Programation.constants";
 import { validadePossibleErrors } from "./Programation.functions";
 
 const defaultState = {
-  lines: linesDefault, // [{}]
+  lines: [{}],
   isValid: false,
   error: "",
 };
