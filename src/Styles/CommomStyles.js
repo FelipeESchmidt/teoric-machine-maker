@@ -18,7 +18,7 @@ export const StyledTextArea = styled.textarea`
   border: 0;
   box-shadow: 0 0 8px 4px ${({ theme }) => theme.darkGray};
   line-height: 20px;
-  font-size: 14px;
+  font-size: 15px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
   font-weight: 300;
   letter-spacing: 0.5px;

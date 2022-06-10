@@ -90,6 +90,9 @@ const runCode = () =>
     0
   )}()\n`;
 
+const printResult = () =>
+  `document.getElementById('traceTable').value = programOut;\n`;
+
 export const generate = (recorders, lines) => {
   let fullCode = codeStart;
 
@@ -107,6 +110,7 @@ export const generate = (recorders, lines) => {
   );
 
   fullCode += runCode();
+  fullCode += printResult();
 
   return fullCode + codeEnd;
 };
