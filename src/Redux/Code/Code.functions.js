@@ -14,6 +14,9 @@ const normalizeFunction = (text) => text.split("_").shift();
 const getFunctionName = (index) => `line${index}Function`;
 const getRecorderName = (name) => `recorder_${name}`;
 
+const setInitialRecorderValue = (recorder, value) =>
+  `${getRecorderName(recorder)} = ${value};\n`;
+
 const generateIfFunction = (items, index) => {
   const recorderName = normalizeRecorderName(items[0].text);
   const trueLine = normalizeLine(items[2].text);
@@ -26,7 +29,7 @@ const generateIfFunction = (items, index) => {
     trueLine
   )});${getFunctionName(
     trueLine
-  )}()}else{log(getFullRecordersValues('${falseLine}')+${ifComps.good(
+  )}()}else{log(getFullRecordersValues('${falseLine}')+${ifComps.bad(
     recorderName,
     index,
     falseLine
@@ -93,7 +96,7 @@ const runCode = () =>
 const printResult = () =>
   `document.getElementById('traceTable').value = programOut;\n`;
 
-export const generate = (recorders, lines) => {
+export const generate = (recorders, lines, initialValues) => {
   let fullCode = codeStart;
 
   fullCode += generateLogger();
@@ -102,6 +105,12 @@ export const generate = (recorders, lines) => {
   recorders.forEach(
     (recorder) => (fullCode += `let ${getRecorderName(recorder.name)} = 0;\n`)
   );
+
+  Object.entries(initialValues).map(
+    ([recorder, value]) =>
+      (fullCode += setInitialRecorderValue(recorder, value))
+  );
+
   fullCode += generateRecordersLog(recorders);
   fullCode += generateFullRecordersLog(recorders);
 

@@ -1,3 +1,4 @@
+export const SET_INITIAL_VALUE = "@code/SET_INITIAL_VALUE";
 export const GENERATE_CODE = "@code/GENERATE_CODE";
 export const RESET_CODE = "@code/RESET_CODE";
 
