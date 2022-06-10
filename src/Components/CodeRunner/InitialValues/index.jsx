@@ -25,14 +25,16 @@ function InitialValues() {
             <S.Label htmlFor={input.definition}>
               Registrador {input.recorder}
             </S.Label>
-            <S.Input
-              id={input.definition}
-              type="number"
-              min={0}
-              max={100}
-              value={initialValues[input.recorder] || 0}
-              onChange={(e) => handleSetValue(input.recorder, e.target.value)}
-            />
+            {!isNaN(initialValues[input.recorder]) && (
+              <S.Input
+                id={input.definition}
+                type="number"
+                min={0}
+                max={100}
+                value={initialValues[input.recorder]}
+                onChange={(e) => handleSetValue(input.recorder, e.target.value)}
+              />
+            )}
           </S.InputWrapper>
         ))}
       </S.InputsWrapper>

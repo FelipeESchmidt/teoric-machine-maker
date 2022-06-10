@@ -6,7 +6,15 @@ const codeEnd = "\n})();";
 
 const generateLogger = () =>
   `const log = (str) => programOut += str + '\\n';\n`;
-const generateReturn = () => `const lineReturnFunction = () => {}\n`;
+const generateReturn = (finalValues) =>
+  `const lineReturnFunction = () => {log('');${finalValues
+    .map(
+      (v) =>
+        `log('Valor final Registrador ${v.recorder} -> ' + ${getRecorderName(
+          v.recorder
+        )})`
+    )
+    .join(";\n")}}\n`;
 
 const normalizeLine = (line) => (line >= 0 ? line : "Return");
 const normalizeRecorderName = (text) => text.split("_").pop().toUpperCase();
@@ -16,7 +24,7 @@ const getFunctionName = (index) => `line${index}Function`;
 const getRecorderName = (name) => `recorder_${name}`;
 
 const setInitialRecorderValue = (recorder, value) =>
-  `${getRecorderName(recorder)} = ${value};\n`;
+  `${getRecorderName(recorder)} = ${value || 0};\n`;
 
 const generateIfFunction = (items, index) => {
   const recorderName = normalizeRecorderName(items[0].text);
@@ -101,12 +109,12 @@ const runCode = () =>
 const printResult = () =>
   `document.getElementById('traceTable').value = programOut;\n`;
 
-export const generate = (recorders, lines, initialValues) => {
+export const generate = (recorders, lines, initialValues, finalValues) => {
   let fullCode = codeStart;
   fullCode += codeVerifyInfiniteLoop;
 
   fullCode += generateLogger();
-  fullCode += generateReturn();
+  fullCode += generateReturn(finalValues);
 
   recorders.forEach(
     (recorder) => (fullCode += `let ${getRecorderName(recorder.name)} = 0;\n`)

@@ -15,3 +15,13 @@ export const setInitialValue = (recorder, value) => ({
   recorder,
   value,
 });
+
+export const startInitialValues = (initialValues) => ({
+  type: constants.START_INITIAL_VALUES,
+  initialValues,
+});
+
+export const setFinalValues = (finalValues) => ({
+  type: constants.SET_FINAL_VALUES,
+  finalValues,
+});

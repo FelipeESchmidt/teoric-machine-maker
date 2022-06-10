@@ -4,6 +4,7 @@ import { generate } from "./Code.functions";
 const defaultState = {
   code: "",
   initialValues: {},
+  finalValues: [],
 };
 
 export default function reducer(state = { ...defaultState }, action) {
@@ -12,19 +13,33 @@ export default function reducer(state = { ...defaultState }, action) {
       const code = generate(
         action.recorders,
         action.lines,
-        state.initialValues
+        state.initialValues,
+        state.finalValues
       );
       return { ...state, code };
 
     case constants.RESET_CODE:
       return { ...defaultState };
 
-    case constants.SET_INITIAL_VALUE:
+    case constants.START_INITIAL_VALUES: {
+      const initialValues = {};
+      action.initialValues.map(
+        (initial) => (initialValues[initial.recorder] = 0)
+      );
+      return { ...state, initialValues, code: "" };
+    }
+
+    case constants.SET_INITIAL_VALUE: {
       const initialValues = {
         ...state.initialValues,
         [action.recorder]: action.value,
       };
-      return { ...defaultState, initialValues };
+      return { ...state, initialValues, code: "" };
+    }
+
+    case constants.SET_FINAL_VALUES: {
+      return { ...state, finalValues: action.finalValues, code: "" };
+    }
 
     default: {
       return state;
