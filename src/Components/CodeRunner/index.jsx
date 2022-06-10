@@ -10,6 +10,7 @@ import { Container, StyledTextArea } from "../../Styles/CommomStyles";
 
 import Button from "../Button";
 
+import InitialValues from "./InitialValues";
 import * as S from "./index.styles";
 
 function CodeRunner() {
@@ -57,6 +58,7 @@ function CodeRunner() {
             </Button>
           )}
         </S.TopWrapper>
+        <InitialValues />
         <StyledTextArea id="traceTable" readOnly />
       </Container>
     </S.CodeRunner>
