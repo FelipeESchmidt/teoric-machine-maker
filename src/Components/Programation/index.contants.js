@@ -2,19 +2,19 @@ export const lineTypes = {
   if: {
     text: "se",
     items: [
-      { select: "comparators", text: "" },
-      { text: "então vá_para" },
-      { select: "lines", text: "" },
-      { text: "senão vá_para" },
-      { select: "lines", text: "" },
+      { select: "comparators", text: "", color: "infoDarker" },
+      { text: "então vá_para", color: "warnDarker" },
+      { select: "lines", text: "", color: "success" },
+      { text: "senão vá_para", color: "warnDarker" },
+      { select: "lines", text: "", color: "success" },
     ],
   },
   function: {
     text: "faça",
     items: [
-      { select: "functions", text: "" },
-      { text: "vá_para" },
-      { select: "lines", text: "" },
+      { select: "functions", text: "", color: "infoDarker" },
+      { text: "vá_para", color: "warnDarker" },
+      { select: "lines", text: "", color: "success" },
     ],
   },
 };

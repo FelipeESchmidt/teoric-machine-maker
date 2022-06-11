@@ -16,9 +16,10 @@ export const setLineType = (lineType, lineItems, lineIndex) => ({
   lineIndex,
 });
 
-export const setLineSelection = (value, itemIndex, lineIndex) => ({
+export const setLineSelection = (value, lineItem, itemIndex, lineIndex) => ({
   type: constants.SET_LINE_SELECTION,
   value,
+  lineItem,
   itemIndex,
   lineIndex,
 });

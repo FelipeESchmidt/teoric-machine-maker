@@ -30,7 +30,10 @@ export default function reducer(state = { ...defaultState }, action) {
 
     case constants.SET_LINE_SELECTION: {
       const lines = [...state.lines];
-      lines[action.lineIndex].items[action.itemIndex] = { text: action.value };
+      lines[action.lineIndex].items[action.itemIndex] = {
+        ...action.lineItem,
+        text: action.value,
+      };
       return { ...state, lines };
     }
 

@@ -36,28 +36,43 @@ function LineType({ index, line }) {
     lines: mountLines(),
   };
 
-  const handleSelect = (value, itemIndex) => {
-    dispatch(setLineSelection(value, itemIndex, index));
+  const handleSelect = (value, lineItem, itemIndex) => {
+    dispatch(setLineSelection(value, lineItem, itemIndex, index));
   };
 
-  const renderSingleText = (text) => <SLine.Text>{text}</SLine.Text>;
+  const handleDeselect = (lineItem, itemIndex) => {
+    dispatch(setLineSelection("", lineItem, itemIndex, index));
+  };
 
-  const renderSelector = (selector, itemIndex) => (
+  const renderSingleText = (lineItem, hasSelect, itemIndex) => (
+    <SLine.Text
+      color={lineItem.color}
+      hasSelect={hasSelect}
+      onClick={() => (hasSelect ? handleDeselect(lineItem, itemIndex) : null)}
+    >
+      {lineItem.text}
+    </SLine.Text>
+  );
+
+  const renderSelector = (lineItem, itemIndex) => (
     <SLine.StyledSelect
-      onChange={({ value }) => handleSelect(value, itemIndex)}
-      options={selectors[selector]}
+      onChange={({ value }) => handleSelect(value, lineItem, itemIndex)}
+      options={selectors[lineItem.select]}
     />
   );
 
   return (
     <>
       <S.Item>
-        <SLine.Text>{programaLine.text}</SLine.Text>
+        <SLine.Text textToColored={programaLine.text}>
+          {programaLine.text}
+        </SLine.Text>
       </S.Item>
-      {line.items.map(({ text, select }, index) => (
+      {line.items.map((lineItem, index) => (
         <S.Item key={index}>
-          {text && renderSingleText(text)}
-          {select && renderSelector(select, index)}
+          {lineItem.text &&
+            renderSingleText(lineItem, !!lineItem.select, index)}
+          {lineItem.select && !lineItem.text && renderSelector(lineItem, index)}
         </S.Item>
       ))}
     </>

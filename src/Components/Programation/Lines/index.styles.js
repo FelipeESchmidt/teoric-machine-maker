@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Select from "react-select";
 
 export const StyledLines = styled.div`
@@ -29,7 +29,15 @@ export const StyledLine = styled.div`
 `;
 
 export const Text = styled.span`
-  color: ${({ theme }) => theme.white};
+  color: ${({ color, theme }) => theme[color || "white"]};
+  ${({ hasSelect }) =>
+    hasSelect &&
+    css`
+      :hover {
+        color: ${({ theme }) => theme.errorDarker};
+        cursor: pointer;
+      }
+    `};
 `;
 
 export const LineText = styled(Text)`
