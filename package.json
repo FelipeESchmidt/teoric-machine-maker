@@ -1,19 +1,7 @@
 {
-  "name": "a",
+  "name": "teoric-machine-maker",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-icons": "^4.3.1",
-    "react-redux": "^8.0.1",
-    "react-router": "^6.3.0",
-    "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
-    "react-select": "^5.3.2",
-    "redux": "^4.2.0",
-    "styled-components": "^5.3.5"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && cp ./.htaccess build/.htaccess",
@@ -37,5 +25,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "homepage": "./",
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-icons": "^4.3.1",
+    "react-redux": "^8.0.1",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "react-select": "^5.3.2",
+    "redux": "^4.2.0",
+    "styled-components": "^5.3.5"
   }
 }
