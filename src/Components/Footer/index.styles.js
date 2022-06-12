@@ -9,10 +9,29 @@ export const StyledFooter = styled.div`
   box-shadow: 0px -2px 5px 2px ${({ theme }) => theme.darkGray};
 `;
 
+export const StyledOwners = styled.div`
+  display: flex;
+  justify-content: space-around;
+  @media screen and (max-width: 400px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+`;
+
+export const StyledOwner = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media screen and (max-width: 400px) {
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+  }
+`;
+
 export const StyledWrapper = styled.div`
   display: flex;
   justify-content: center;
-  gap: 2%;
+  gap: 10px;
   padding: 5px 0;
 `;
 
@@ -29,6 +48,10 @@ const Icon = css`
   height: 20px;
   color: ${({ theme }) => theme.white};
   cursor: pointer;
+  :hover {
+    transition: 0.5s;
+    color: ${({ theme }) => theme.error};
+  }
 `;
 
 export const GithubIcon = styled(BsGithub)`
