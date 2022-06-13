@@ -1,25 +1,34 @@
 import { machineDefinition } from "../../Components/Definition/index.constants";
 import { lengthValues, replaceableParts } from "./Program.constants";
 
+/* Executa filtro de acordo com tipo da funcionalidade e registradors que possuem essa funcionalidade */
 const filterBy = (type) => (f) => f.type === type && f.marked;
 
+/* Substitui alguma informação dentro de uma string */
 const replaceInfo = (string, search, value) =>
   string.replace(new RegExp(search, "g"), value);
 
+/* Altera definição de funcionalidade de acordo com o nome do Registrador */
 const normalizeFuncs = (recorder, type) => (func) => ({
   type,
   recorder: recorder.name,
   definition: replaceInfo(func.definitionString, "{recorder}", recorder.name),
 });
 
+/* Seleciona todos os registradores de acordo com o tipo da funcionalidade */
 const getRecordersFilteredBy = (recorderFuncs, recorder, type) => {
   const recorderFunctions = recorderFuncs.filter(filterBy(type));
   return recorderFunctions.map(normalizeFuncs(recorder, type));
 };
 
+/* Altera string com todos os registradores para de acordo com funcionalidade (A,B,C,D) -> (A+1,B,C,D) */
 const betterAll = (name, recordersAll, replaceBy) =>
   replaceInfo(recordersAll, name, replaceBy);
 
+/* Altera informações '{info}' pela informação de acordo com o registrador 
+  FROM - armazena_{recorder}: N -> N{length} tal que, ∀n∈N, armazena_{recorder}({recorder}) = ({recorders})
+  TO   - armazena_A: N -> N⁶ tal que, ∀n∈N, armazena_A(A) = (A,B,C,D,E,F)
+*/
 const normalizeDefinition = (definition, name, allRecorders) => {
   let definitionNormalized = definition;
   const allRecordersJoined = allRecorders.join(",");
@@ -44,6 +53,7 @@ const normalizeDefinition = (definition, name, allRecorders) => {
   return definitionNormalized;
 };
 
+/* Gera definição de todas as funcionalidades marcadas da máquina */
 const generateMachineDefinition = (recorders) => {
   const definitions = [];
   const definitionsName = [];
@@ -62,6 +72,7 @@ const generateMachineDefinition = (recorders) => {
   return normalizedDefinitions.join("\n");
 };
 
+/* Gera definição geral da máquina */
 const generateMainDefinition = (recorders) => {
   let mainDefinition = machineDefinition;
   const definitions = [];
@@ -96,6 +107,7 @@ const generateMainDefinition = (recorders) => {
   return mainDefinition;
 };
 
+/* Gera definição inteira da máquina e gera variáveis que serão usadas em outros lugares do app */
 export const generate = (recorders) => {
   const inputs = [];
   const outputs = [];

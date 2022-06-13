@@ -33,6 +33,7 @@ function Definition() {
 
   const handleGoNext = () => navigate(routes.programation);
 
+  /* Adiciona novo registrador e manda funcionalidades possíveis para ele */
   const handleAddRecorder = () => {
     dispatch(addRecorder(whatTheFGLMachineIsAbleToDo));
   };
@@ -40,6 +41,7 @@ function Definition() {
   const dispatchMessage = (message = "Sucesso!") =>
     dispatch(newMessage({ type: "success", message }));
 
+  /* Gera definição da máquina */
   const handleGenerateFunctionalities = () => {
     dispatch(generateFunctionalities(recorders));
     dispatchMessage("Máquina gerada com sucesso!");

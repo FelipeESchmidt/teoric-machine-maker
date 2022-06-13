@@ -1,6 +1,6 @@
 export const recorderLimits = {
-  min: 5,
-  max: 10,
+  min: 1,
+  max: 16,
 };
 
 export const machineDefinition =

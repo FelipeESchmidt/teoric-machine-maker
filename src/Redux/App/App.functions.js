@@ -5,6 +5,7 @@ const normalizeFunctionalities = (functionalities) => {
   }));
 };
 
+/* Cria novo Registrador e adiciona todas funcionalidades possíveis a ele */
 export const createNewRecorder = (functionalities, recorders) => {
   const lastRecorder = [...recorders].pop();
   const newRecorderName = lastRecorder
@@ -16,6 +17,7 @@ export const createNewRecorder = (functionalities, recorders) => {
   };
 };
 
+/* Seleciona funcionalidade para um registrador */
 export const markRecorderFunctionalitie = (
   recorderId,
   functionalitieId,

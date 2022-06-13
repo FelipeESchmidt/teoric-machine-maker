@@ -42,14 +42,15 @@ function Lines() {
           <S.LineText onClick={() => handleRemoveLine(index)}>
             {index}
           </S.LineText>
-          {!line.type && (
+          {!line.type ? (
             <S.StyledSelect
               value={line.type}
               onChange={({ value }) => handleSelectLineType(value, index)}
               options={lineOptions}
             />
+          ) : (
+            renderLineType(line, index)
           )}
-          {line.type && renderLineType(line, index)}
         </S.StyledLine>
       ))}
     </S.StyledLines>

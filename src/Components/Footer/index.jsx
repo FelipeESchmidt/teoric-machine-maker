@@ -9,7 +9,7 @@ function Footer() {
       <Container>
         <S.StyledOwners>
           {owners.map((owner, index) => (
-            <S.StyledOwner>
+            <S.StyledOwner key={index.toString()}>
               <S.StyledWrapper>
                 <S.Text>{owner.name}</S.Text>
               </S.StyledWrapper>

@@ -27,6 +27,7 @@ function CodeRunner() {
   const { inputs, outputs } = useSelector(programSelector);
   const { lines } = useSelector(programationSelector);
 
+  /* Gera código do programa escrito */
   const handleGenerateCode = () => dispatch(generateCode(recorders, lines));
 
   const clearScripts = () => {
@@ -35,6 +36,7 @@ function CodeRunner() {
       .forEach((el) => el.remove());
   };
 
+  /* Roda o código gerado */
   const runCode = () => {
     clearScripts();
     const script = document.createElement("script");

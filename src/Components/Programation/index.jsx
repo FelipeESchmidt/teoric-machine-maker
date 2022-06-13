@@ -14,6 +14,7 @@ import * as S from "./index.styles";
 function Programation() {
   const dispatch = useDispatch();
 
+  /* Adiociona linha para programação */
   const handleAddLine = () => dispatch(addLine());
 
   return (

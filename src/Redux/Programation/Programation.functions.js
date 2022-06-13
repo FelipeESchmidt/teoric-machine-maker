@@ -1,3 +1,4 @@
+/* Valida se programa tem no mínimo 2 linhas */
 const mustHaveAtLeastTwoLines = (lines) => {
   const minimumLines = 2;
   if (lines.length < 2) {
@@ -6,6 +7,7 @@ const mustHaveAtLeastTwoLines = (lines) => {
   return "";
 };
 
+/* Valida se tem alguma linha sem seleção de if/function */
 const mustHaveLinesTypeSelected = (lines) => {
   const linesWithOutType = lines.filter((line) => !line.type);
   if (linesWithOutType.length) {
@@ -14,6 +16,7 @@ const mustHaveLinesTypeSelected = (lines) => {
   return "";
 };
 
+/* Valida se todos os seletores foram selecionados */
 const mustHaveCompletedLines = (lines) => {
   const linesItemsEmpty = [];
   lines.forEach((line) => {
@@ -26,6 +29,7 @@ const mustHaveCompletedLines = (lines) => {
   return "";
 };
 
+/* Valida se existe algum retorno no meio do programa */
 const mustHaveAtLeastOneReturn = (lines) => {
   const linesAsReturn = [];
   lines.forEach((line) => {
@@ -44,6 +48,7 @@ const validations = [
   mustHaveAtLeastOneReturn,
 ];
 
+/* Roda todas as validações e retorna o erro */
 export const validadePossibleErrors = (lines) => {
   let error = "";
   validations.every((validation) => {
