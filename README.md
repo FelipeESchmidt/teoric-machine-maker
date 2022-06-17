@@ -26,7 +26,7 @@ Utilizando algum app de desenvolvimento, por exemplo o VSCode, filtre pela segui
 
 O programa está dividido da seguinte forma:
 
-# Definição
+## Definição
 
 ```
 src/Components/Definition/*
@@ -36,7 +36,7 @@ src/Redux/Program/*
 
 São as partes responsáveis pela definição da máquina, como adição de registradores e seleção de funcionalidades para cada um, assim como a geração da definição da máquina teórica.
 
-# Programação
+## Programação
 
 ```
 src/Components/Programation/*
@@ -45,7 +45,7 @@ src/Redux/Programation/*
 
 São as partes responsáveis pela programação da máquina, como adição de linhas, definição das linhas, definição de qual comparador/função será chamada e definição de qual linha será chamada após.
 
-# Execução do programa escrito
+## Execução do programa escrito
 
 ```
 src/Components/CodeRunner/*
