@@ -3,9 +3,11 @@ export const recorderLimits = {
   max: 16,
 };
 
+/* String para gerar o cabeçalho da definição da máquina */
 export const machineDefinition =
   "FGL_machine = (N{length}, N{input}, N{output}, {functionalities})\nN{length} - Conjuntos de Memória\nN{input} - Conjuntos de Entrada\nN{output} - Conjuntos de Saída";
 
+/* Objeto que identifica quais as funcionalidades possíveis para cada registrador */
 export const whatTheFGLMachineIsAbleToDo = [
   {
     id: 1,

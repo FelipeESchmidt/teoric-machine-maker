@@ -1,3 +1,4 @@
+/* Objeto que identifica o que cada linha pode ser de acordo com 'if' ou 'function' */
 export const lineTypes = {
   if: {
     text: "se",
