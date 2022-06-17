@@ -16,7 +16,7 @@ const normalizeFuncs = (recorder, type) => (func) => ({
 });
 
 /* Seleciona todos os registradores de acordo com o tipo da funcionalidade */
-const getRecordersFilteredBy = (recorderFuncs, recorder, type) => {
+export const getRecordersFilteredBy = (recorderFuncs, recorder, type) => {
   const recorderFunctions = recorderFuncs.filter(filterBy(type));
   return recorderFunctions.map(normalizeFuncs(recorder, type));
 };

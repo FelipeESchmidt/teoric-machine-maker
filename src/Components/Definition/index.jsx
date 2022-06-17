@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { addRecorder, randomMachine } from "../../Redux/App/App.actions";
 import { appSelector } from "../../Redux/App/App.selectors";
+import { validateFunctionalities } from "../../Redux/Program/Program.validations";
 import { generateFunctionalities } from "../../Redux/Program/Program.actions";
 import { programSelector } from "../../Redux/Program/Program.selectors";
 
@@ -19,6 +20,7 @@ import DefinitionText from "./DefinitionText";
 
 import { recorderLimits, whatTheFGLMachineIsAbleToDo } from "./index.constants";
 import * as S from "./index.styles";
+import { useEffect } from "react";
 
 function Definition() {
   const dispatch = useDispatch();
@@ -27,6 +29,7 @@ function Definition() {
   const { recorders } = useSelector(appSelector);
   const { definition } = useSelector(programSelector);
 
+  const [isValid, setIsValid] = useState(false);
   const [ableToGoNext, setAbleToGoNext] = useState(!!definition);
 
   const onSelectFunctionality = () => setAbleToGoNext(false);
@@ -38,8 +41,19 @@ function Definition() {
     dispatch(addRecorder(whatTheFGLMachineIsAbleToDo));
   };
 
-  const dispatchMessage = (message = "Sucesso!") =>
-    dispatch(newMessage({ type: "success", message }));
+  const dispatchMessage = (message = "Sucesso!", type = "success") =>
+    dispatch(newMessage({ type, message }));
+
+  /* Valida erros na máquina */
+  const handleValidateFunctionalities = () => {
+    const error = validateFunctionalities(recorders);
+    setIsValid(!error);
+    if (!error) {
+      dispatchMessage("Máquina validada!");
+    } else {
+      dispatchMessage(`Máquina possui problemas! -> ${error} <-`, "error");
+    }
+  };
 
   /* Gera definição da máquina */
   const handleGenerateFunctionalities = () => {
@@ -60,7 +74,17 @@ function Definition() {
           Próximo Passo
         </Button>
       );
-    if (recorders.length)
+    if (recorders.length && !isValid)
+      return (
+        <Button
+          onClick={handleValidateFunctionalities}
+          disabled={recorders.length < recorderLimits.min}
+          type="info"
+        >
+          Validar Máquina
+        </Button>
+      );
+    if (recorders.length && isValid)
       return (
         <Button
           onClick={handleGenerateFunctionalities}
@@ -76,6 +100,10 @@ function Definition() {
       </Button>
     );
   };
+
+  useEffect(() => {
+    setIsValid(false);
+  }, [recorders]);
 
   return (
     <S.Definition>

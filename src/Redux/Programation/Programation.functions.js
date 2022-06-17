@@ -1,7 +1,7 @@
 /* Valida se programa tem no mínimo 2 linhas */
 const mustHaveAtLeastTwoLines = (lines) => {
   const minimumLines = 2;
-  if (lines.length < 2) {
+  if (lines.length < minimumLines) {
     return `Programa precisa ter pelo menos ${minimumLines} linhas!`;
   }
   return "";
