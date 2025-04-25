@@ -119,8 +119,6 @@ const mountFunctionByRecorder = (
     line,
     nextLine
   )});`;
-  console.log({ recorder, variable, funcType, line, nextLine });
-  console.log({ a });
   return a;
 };
 
@@ -174,7 +172,6 @@ const generateRecordersLog = (recorders) => {
     .map((r) => getRecorderName(r.name))
     .join("}, ${");
   const recordersToPrint = "`(${" + getRecordersName + "})`";
-  console.log(`const getRecordersValues = () => ${recordersToPrint}\n`);
   return `const getRecordersValues = () => ${recordersToPrint}\n`;
 };
 
